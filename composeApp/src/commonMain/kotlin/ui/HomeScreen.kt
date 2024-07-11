@@ -9,6 +9,7 @@ import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -20,6 +21,7 @@ import cmpshowcaseproject.composeapp.generated.resources.compose_multiplatform
 import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.annotation.KoinExperimentalAPI
+import util.UiState
 
 @OptIn(KoinExperimentalAPI::class)
 @Composable
@@ -28,20 +30,24 @@ fun HomeScreen(
 ) {
     val viewModel = koinViewModel<HomeViewModel>()
     var showContent by remember { mutableStateOf(false) }
+    val uiState by viewModel.uiState.collectAsState()
 
     LaunchedEffect(Unit){
         viewModel.getMovies()
     }
 
     Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-        Button(onClick = { showContent = !showContent }) {
+        Button(onClick = {
+            println("Ajib Click")
+            showContent = !showContent
+        }) {
             Text("Click me!")
         }
         AnimatedVisibility(showContent) {
             val greeting = remember { Greeting().greet() }
             Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
                 Image(painterResource(Res.drawable.compose_multiplatform), null)
-                Text("Compose: $greeting")
+                Text("Compose: $greeting its ${(uiState as UiState.Success).data?.get(0)?.title}")
             }
         }
     }

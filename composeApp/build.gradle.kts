@@ -56,8 +56,6 @@ kotlin {
             implementation(libs.navigation.compose)
 
             implementation(libs.bundles.ktor)
-
-            api(libs.kotlin.logging)
         }
 
         iosMain.dependencies {

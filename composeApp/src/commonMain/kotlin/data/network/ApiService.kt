@@ -9,7 +9,6 @@ import io.ktor.client.request.parameter
 import io.ktor.http.ContentType
 import data.model.MoviesResponse
 import getPlatform
-import org.lighthousegames.logging.logging
 import util.NetworkError
 import util.Result
 
@@ -19,7 +18,7 @@ class ApiService (
     suspend fun getMovies(page: Int): Result<MoviesResponse, NetworkError> {
         val bearerTokens = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyYTMwOTI5NzIyNWI2N2UxNWM1MjViYTY5NTIzZjM4ZCIsIm5iZiI6MTcyMDQxMTEyOC44ODc3NzksInN1YiI6IjVhNjJjZTk3OTI1MTQxMGIxYTAwNWQwYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.gt9SjDt9Gmc2gVcjCO7nPIF6CCNf4FGwWISLuBnLWbg"
         val urlString = "${getPlatform().baseUrl}/movie/popular"
-        logging("Ajib").d { "Url String : $urlString" }
+//        logging("Ajib").d { "Url String : $urlString" }
         val response = try {
             httpClient.get(
                 urlString = urlString
@@ -30,8 +29,8 @@ class ApiService (
                 accept(ContentType.Application.Json)
                 bearerAuth(bearerTokens)
             }
-        } catch (e: Throwable) { // Catch any other unexpected exceptions
-            return Result.Error(NetworkError.UNKNOWN) // Or handle as appropriate
+        } catch (e: Throwable) {
+            return Result.Error(NetworkError.UNKNOWN)
         }
 
         return when(response.status.value) {

@@ -1,5 +1,6 @@
-package network
+package data.repository
 
+import data.network.ApiService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import util.onError

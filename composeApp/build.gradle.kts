@@ -56,6 +56,8 @@ kotlin {
             implementation(libs.navigation.compose)
 
             implementation(libs.bundles.ktor)
+
+            api(libs.kotlin.logging)
         }
 
         iosMain.dependencies {
@@ -78,6 +80,8 @@ android {
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
         versionName = "1.0"
+
+        buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3\"")
     }
     packaging {
         resources {
@@ -95,6 +99,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     dependencies {
         debugImplementation(compose.uiTooling)

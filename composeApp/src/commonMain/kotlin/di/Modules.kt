@@ -4,9 +4,9 @@ import io.ktor.client.HttpClient
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
-import network.ApiService
-import network.MoviesRepository
-import network.MoviesRepositoryImpl
+import data.network.ApiService
+import data.repository.MoviesRepository
+import data.repository.MoviesRepositoryImpl
 import org.koin.compose.viewmodel.dsl.viewModelOf
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration

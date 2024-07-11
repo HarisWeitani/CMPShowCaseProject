@@ -3,7 +3,8 @@ package ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import network.MoviesRepository
+import data.repository.MoviesRepository
+import org.lighthousegames.logging.logging
 
 class HomeViewModel(
     private val moviesRepository: MoviesRepository
@@ -12,7 +13,7 @@ class HomeViewModel(
     fun getMovies() {
         viewModelScope.launch {
             moviesRepository.getMovies().collect {
-                println(it)
+                logging("Ajib").d { "Hello $it" }
             }
         }
     }

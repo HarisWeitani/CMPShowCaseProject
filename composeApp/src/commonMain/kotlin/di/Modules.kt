@@ -11,7 +11,7 @@ import org.koin.compose.viewmodel.dsl.viewModelOf
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
-import ui.HomeViewModel
+import ui.home.HomeViewModel
 
 val clientModule = module {
     single {

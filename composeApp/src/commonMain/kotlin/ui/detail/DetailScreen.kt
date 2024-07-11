@@ -10,12 +10,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun DetailScreen(modifier: Modifier = Modifier) {
+fun DetailScreen(
+    modifier: Modifier = Modifier,
+    name: String? = null,
+    age: Int = 0
+) {
     Column(
         modifier = Modifier.fillMaxWidth().padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text("Detail Screen")
-        Text("Detail Screen 2")
+        Text("$name | $age")
     }
 }

@@ -1,5 +1,6 @@
 package ui.home
 
+import DetailScreen
 import Greeting
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
@@ -46,7 +47,12 @@ fun HomeScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Button(onClick = {
-            navController.navigate("detail")
+            navController.navigate(
+                DetailScreen(
+                    name = "Ajib",
+                    age = 12
+                )
+            )
         }) {
             Text("Navigate")
         }

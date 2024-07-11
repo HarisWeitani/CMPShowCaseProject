@@ -7,7 +7,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
 import di.appModule
+import kotlinx.serialization.Serializable
 import org.koin.compose.KoinApplication
 import ui.detail.DetailScreen
 import ui.home.HomeScreen
@@ -25,7 +27,7 @@ fun App() {
             NavHost(
                 modifier = Modifier.fillMaxSize(),
                 navController = navController,
-                startDestination = "home",
+                startDestination = HomeScreen,
                 enterTransition = {
                     slideIntoContainer(
                         AnimatedContentTransitionScope.SlideDirection.Left,
@@ -51,15 +53,28 @@ fun App() {
                     )
                 }
             ) {
-                composable(route = "home") {
+                composable<HomeScreen> {
                     HomeScreen(
                         navController = navController
                     )
                 }
-                composable(route = "detail") {
-                    DetailScreen()
+                composable<DetailScreen> {
+                    val args = it.toRoute<DetailScreen>()
+                    DetailScreen(
+                        name = args.name,
+                        age = args.age
+                    )
                 }
             }
         }
     }
 }
+
+@Serializable
+object HomeScreen
+
+@Serializable
+data class DetailScreen(
+    val name: String?,
+    val age: Int
+)

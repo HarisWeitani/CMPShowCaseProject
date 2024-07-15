@@ -1,5 +1,6 @@
 package domain.model
 
+import data.model.MovieEntity
 import data.model.MoviesResponse
 import getPlatform
 
@@ -40,3 +41,19 @@ fun MoviesResponse.toDomain() : List<MovieModel> =
         )
     }
 
+fun List<MovieModel>.toEntity(): MovieEntity =
+    MovieEntity(
+        movieId = id,
+        adult = adult,
+        backdropPath = backdropPath,
+        originalLanguage = originalLanguage,
+        originalTitle = originalTitle,
+        overview = overview,
+        popularity = popularity,
+        posterPath = posterPath,
+        releaseDate = releaseDate,
+        title = title,
+        video = video,
+        voteAverage = voteAverage,
+        voteCount = voteCount,
+    )

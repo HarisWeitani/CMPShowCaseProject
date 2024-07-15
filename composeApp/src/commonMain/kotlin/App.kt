@@ -15,13 +15,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
-import di.appModule
-import domain.model.MovieModel
+import org.hariswei.cmpshowcaseproject.di.appModule
 import kotlinx.serialization.Serializable
 import org.koin.compose.KoinApplication
 import ui.detail.DetailScreen
 import ui.home.HomeRoute
-import ui.home.HomeScreenState
 
 @Composable
 fun App() {

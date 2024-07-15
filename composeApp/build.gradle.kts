@@ -9,6 +9,8 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.room)
 }
 
 kotlin {
@@ -40,6 +42,8 @@ kotlin {
             implementation(libs.koin.androidx.compose)
 
             implementation(libs.ktor.client.okhttp)
+
+            implementation(libs.room.runtime.android)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -58,6 +62,9 @@ kotlin {
             implementation(libs.bundles.ktor)
 
             implementation(libs.bundles.coil)
+
+            implementation(libs.room.runtime)
+            implementation(libs.sqlite.bundled)
         }
 
         iosMain.dependencies {
@@ -107,3 +114,11 @@ android {
     }
 }
 
+room {
+    schemaDirectory("$projectDir/schemas")
+}
+
+dependencies {
+    implementation(libs.androidx.room.common)
+    add("kspCommonMainMetadata", libs.room.compiler)
+}

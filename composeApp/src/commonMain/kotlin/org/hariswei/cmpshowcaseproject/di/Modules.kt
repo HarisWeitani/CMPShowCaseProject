@@ -1,4 +1,4 @@
-package di
+package org.hariswei.cmpshowcaseproject.di
 
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -9,6 +9,7 @@ import data.repository.MoviesRepository
 import data.repository.MoviesRepositoryImpl
 import org.koin.compose.viewmodel.dsl.viewModelOf
 import org.koin.core.context.startKoin
+import org.koin.core.module.Module
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
 import ui.home.HomeViewModel
@@ -27,6 +28,8 @@ val apiServiceModule = module {
     single { ApiService(get()) }
 }
 
+expect val platformModule: Module
+
 val repositoryModule = module {
     single<MoviesRepository> { MoviesRepositoryImpl(get()) }
 }
@@ -35,7 +38,7 @@ val viewModelModule = module {
     viewModelOf(::HomeViewModel)
 }
 
-fun appModule() = listOf(viewModelModule, repositoryModule, clientModule, apiServiceModule)
+fun appModule() = listOf(viewModelModule, repositoryModule, clientModule, apiServiceModule, platformModule)
 
 fun initKoin(config: KoinAppDeclaration? = null) {
     startKoin {

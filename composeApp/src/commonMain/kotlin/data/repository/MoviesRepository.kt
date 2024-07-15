@@ -1,8 +1,10 @@
 package data.repository
 
+import data.database.MovieDao
 import data.network.ApiService
 import domain.model.MovieModel
 import domain.model.toDomain
+import domain.model.toEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.Flow
@@ -14,10 +16,12 @@ import util.onSuccess
 
 interface MoviesRepository {
     suspend fun getMovies() : Flow<UiState<List<MovieModel>>>
+    suspend fun insertMovies(dataList: List<MovieModel>)
 }
 
 class MoviesRepositoryImpl(
     private val moviesClient: ApiService,
+    private val movieDb: MovieDao
 ): MoviesRepository {
     override suspend fun getMovies(): Flow<UiState<List<MovieModel>>> {
         return flow {
@@ -30,5 +34,13 @@ class MoviesRepositoryImpl(
                 emit(UiState.Error(emptyList<MovieModel>(), error.name))
             }
         }.flowOn(Dispatchers.IO)
+    }
+
+    override suspend fun insertMovies(dataList: List<MovieModel>) {
+        dataList.forEach { data ->
+            movieDb.insertMovies(
+                data.toEntity()
+            )
+        }
     }
 }

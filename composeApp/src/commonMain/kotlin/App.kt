@@ -1,7 +1,14 @@
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
@@ -9,10 +16,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import di.appModule
+import domain.model.MovieModel
 import kotlinx.serialization.Serializable
 import org.koin.compose.KoinApplication
 import ui.detail.DetailScreen
-import ui.home.HomeScreen
+import ui.home.HomeRoute
+import ui.home.HomeScreenState
 
 @Composable
 fun App() {
@@ -24,46 +33,65 @@ fun App() {
         }
     ) {
         MaterialTheme {
-            NavHost(
+            Scaffold(
                 modifier = Modifier.fillMaxSize(),
-                navController = navController,
-                startDestination = HomeScreen,
-                enterTransition = {
-                    slideIntoContainer(
-                        AnimatedContentTransitionScope.SlideDirection.Left,
-                        animationSpec = tween(500)
-                    )
-                },
-                exitTransition = {
-                    slideOutOfContainer(
-                        AnimatedContentTransitionScope.SlideDirection.Left,
-                        animationSpec = tween(500)
-                    )
-                },
-                popEnterTransition = {
-                    slideIntoContainer(
-                        AnimatedContentTransitionScope.SlideDirection.Right,
-                        animationSpec = tween(500)
-                    )
-                },
-                popExitTransition = {
-                    slideOutOfContainer(
-                        AnimatedContentTransitionScope.SlideDirection.Right,
-                        animationSpec = tween(500)
+                topBar = {
+                    TopAppBar(
+                        title = {
+                            Text("Hello")
+                        },
+                        navigationIcon = {
+                            IconButton(
+                                onClick = {
+                                    navController.popBackStack()
+                                }
+                            ) {
+                                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
+                            }
+                        }
                     )
                 }
             ) {
-                composable<HomeScreen> {
-                    HomeScreen(
-                        navController = navController
-                    )
-                }
-                composable<DetailScreen> {
-                    val args = it.toRoute<DetailScreen>()
-                    DetailScreen(
-                        name = args.name,
-                        age = args.age
-                    )
+                NavHost(
+                    modifier = Modifier.fillMaxSize(),
+                    navController = navController,
+                    startDestination = HomeScreenRoute,
+                    enterTransition = {
+                        slideIntoContainer(
+                            AnimatedContentTransitionScope.SlideDirection.Left,
+                            animationSpec = tween(500)
+                        )
+                    },
+                    exitTransition = {
+                        slideOutOfContainer(
+                            AnimatedContentTransitionScope.SlideDirection.Left,
+                            animationSpec = tween(500)
+                        )
+                    },
+                    popEnterTransition = {
+                        slideIntoContainer(
+                            AnimatedContentTransitionScope.SlideDirection.Right,
+                            animationSpec = tween(500)
+                        )
+                    },
+                    popExitTransition = {
+                        slideOutOfContainer(
+                            AnimatedContentTransitionScope.SlideDirection.Right,
+                            animationSpec = tween(500)
+                        )
+                    }
+                ) {
+                    composable<HomeScreenRoute> {
+                        HomeRoute(
+                            navController = navController
+                        )
+                    }
+                    composable<DetailScreenRoute> {
+                        val args = it.toRoute<DetailScreenRoute>()
+                        DetailScreen(
+                            movieModel = args.data
+                        )
+                    }
                 }
             }
         }
@@ -71,10 +99,9 @@ fun App() {
 }
 
 @Serializable
-object HomeScreen
+object HomeScreenRoute
 
 @Serializable
-data class DetailScreen(
-    val name: String?,
-    val age: Int
+data class DetailScreenRoute(
+    val data: String
 )

@@ -8,18 +8,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import domain.model.MovieModel
 
 @Composable
 fun DetailScreen(
     modifier: Modifier = Modifier,
-    name: String? = null,
-    age: Int = 0
+    movieModel: String? = null,
 ) {
     Column(
         modifier = Modifier.fillMaxWidth().padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text("Detail Screen")
-        Text("$name | $age")
     }
 }

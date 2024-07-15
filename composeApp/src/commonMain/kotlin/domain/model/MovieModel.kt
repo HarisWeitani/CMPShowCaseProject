@@ -1,6 +1,7 @@
 package domain.model
 
 import data.model.MoviesResponse
+import getPlatform
 
 data class MovieModel(
     val adult: Boolean,
@@ -23,14 +24,14 @@ fun MoviesResponse.toDomain() : List<MovieModel> =
     results.map { data ->
         MovieModel(
             adult = data.adult,
-            backdropPath = data.backdropPath,
+            backdropPath = getPlatform().imageBaseUrl + data.backdropPath,
             genreIds = data.genreIds,
             id = data.id,
             originalLanguage = data.originalLanguage,
             originalTitle = data.originalTitle,
             overview = data.overview,
             popularity = data.popularity,
-            posterPath = data.posterPath,
+            posterPath = getPlatform().imageBaseUrl + data.posterPath,
             releaseDate = data.releaseDate,
             title = data.title,
             video = data.video,

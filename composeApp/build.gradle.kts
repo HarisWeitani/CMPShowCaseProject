@@ -56,6 +56,8 @@ kotlin {
             implementation(libs.navigation.compose)
 
             implementation(libs.bundles.ktor)
+
+            implementation(libs.bundles.coil)
         }
 
         iosMain.dependencies {
@@ -80,6 +82,7 @@ android {
         versionName = "1.0"
 
         buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3\"")
+        buildConfigField("String", "IMAGE_BASE_URL", "\"http://image.tmdb.org/t/p/w185\"")
     }
     packaging {
         resources {

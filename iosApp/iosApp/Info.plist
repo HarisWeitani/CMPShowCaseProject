@@ -48,5 +48,22 @@
 	</array>
     <key>BASE_URL</key>
     <string>https://api.themoviedb.org/3</string>
+    <key>IMAGE_BASE_URL</key>
+    <string>http://image.tmdb.org/t/p/w185</string>
+    <key>NSAppTransportSecurity</key>
+        <dict>
+            <key>NSAllowsArbitraryLoads</key>
+            <true/>
+            <key>NSExceptionDomains</key>
+            <dict>
+                <key>yourdomain.com</key>
+                <dict>
+                    <key>NSIncludesSubdomains</key>
+                    <true/>
+                    <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+                    <false/>
+                </dict>
+           </dict>
+      </dict>
 </dict>
 </plist>

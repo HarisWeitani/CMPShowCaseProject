@@ -19,6 +19,7 @@ koin = "3.6.0-Beta4"
 koinComposeMultiplatform = "1.2.0-Beta4"
 navigationCompose = "2.8.0-alpha08"
 lifecycleViewModel = "2.8.3"
+coilImage = "3.0.0-alpha06"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -49,6 +50,9 @@ ktor-client-content-negotiation = {module = "io.ktor:ktor-client-content-negotia
 kotlin-serialization = {module = "io.ktor:ktor-serialization-kotlinx-json", version.ref="ktor"}
 ktor-client-auth = { module = "io.ktor:ktor-client-auth", version.ref = "ktor" }
 
+coil-image-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coilImage" }
+coil-image-network-ktor = { module = "io.coil-kt.coil3:coil-network-ktor", version.ref = "coilImage" }
+
 [bundles]
 ktor = [
     "ktor-client-core",
@@ -56,6 +60,11 @@ ktor = [
     "ktor-client-logging",
     "kotlin-serialization",
     "ktor-client-auth",
+]
+
+coil = [
+    "coil-image-compose",
+    "coil-image-network-ktor",
 ]
 
 [plugins]

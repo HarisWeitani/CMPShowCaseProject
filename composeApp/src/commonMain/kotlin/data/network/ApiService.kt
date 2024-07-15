@@ -18,7 +18,7 @@ class ApiService (
     suspend fun getMovies(page: Int): Result<MoviesResponse, NetworkError> {
         val bearerTokens = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyYTMwOTI5NzIyNWI2N2UxNWM1MjViYTY5NTIzZjM4ZCIsIm5iZiI6MTcyMDQxMTEyOC44ODc3NzksInN1YiI6IjVhNjJjZTk3OTI1MTQxMGIxYTAwNWQwYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.gt9SjDt9Gmc2gVcjCO7nPIF6CCNf4FGwWISLuBnLWbg"
         val urlString = "${getPlatform().baseUrl}/movie/popular"
-//        logging("Ajib").d { "Url String : $urlString" }
+
         val response = try {
             httpClient.get(
                 urlString = urlString

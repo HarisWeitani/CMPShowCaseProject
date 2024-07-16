@@ -1,7 +1,7 @@
 package org.hariswei.cmpshowcaseproject
 
 import android.app.Application
-import di.initKoin
+import org.hariswei.cmpshowcaseproject.di.initKoin
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 

@@ -1,16 +1,18 @@
 package org.hariswei.cmpshowcaseproject.database
 
-import android.content.Context
 import androidx.room.Room
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import org.hariswei.cmpshowcaseproject.data.database.MovieDatabase
+import org.hariswei.cmpshowcaseproject.data.database.instantiateImpl
+import platform.Foundation.NSHomeDirectory
 
-fun getMovieDatabase(context: Context) : MovieDatabase {
-    val dbFile = context.getDatabasePath("movie.db")
+fun getMovieDatabase(): MovieDatabase {
+    val dbFile = NSHomeDirectory() + "/movie.db"
     return Room.databaseBuilder<MovieDatabase>(
-        context = context.applicationContext,
-        name = dbFile.absolutePath
+        name = dbFile,
+        factory = { MovieDatabase::class.instantiateImpl() }
     )
         .setDriver(BundledSQLiteDriver())
         .build()
+
 }

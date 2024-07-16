@@ -64,7 +64,7 @@ fun HomeRoute(
     HomeScreen(
         state = uiState,
         onItemClick = {
-            navController.navigate(DetailScreenRoute(it))
+            navController.navigate(DetailScreenRoute("it"))
         }
     )
 }

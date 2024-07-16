@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
+import org.hariswei.cmpshowcaseproject.database.getPeopleDatabase
 import ui.home.HomeScreen
 import ui.home.HomeScreenState
 import ui.home.NewsItem
@@ -19,8 +20,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val dao = getPeopleDatabase(applicationContext).peopleDao()
         setContent {
-            App()
+            App(dao)
         }
     }
 }
@@ -28,7 +30,7 @@ class MainActivity : ComponentActivity() {
 @Preview
 @Composable
 fun AppAndroidPreview() {
-    App()
+//    App()
 }
 
 @Preview

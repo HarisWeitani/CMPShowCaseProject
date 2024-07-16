@@ -37,9 +37,9 @@ val viewModelModule = module {
 
 fun appModule() = listOf(viewModelModule, repositoryModule, clientModule, apiServiceModule)
 
-fun initKoin(config: KoinAppDeclaration? = null) {
+fun initKoin(appDeclaration: KoinAppDeclaration = {}) {
     startKoin {
-        config?.invoke(this)
-        modules(viewModelModule)
+        appDeclaration()
+        modules(viewModelModule, repositoryModule, clientModule, apiServiceModule)
     }
 }

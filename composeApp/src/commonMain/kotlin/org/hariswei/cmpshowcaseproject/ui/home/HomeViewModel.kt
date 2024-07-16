@@ -1,16 +1,14 @@
-package ui.home
+package org.hariswei.cmpshowcaseproject.ui.home
 
 import androidx.compose.ui.util.fastRoundToInt
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import data.repository.MoviesRepository
-import domain.model.MovieModel
+import org.hariswei.cmpshowcaseproject.data.repository.MoviesRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import ui.home.HomeScreenState.Data
-import util.UiState
-import kotlin.math.roundToInt
+import org.hariswei.cmpshowcaseproject.ui.home.HomeScreenState.Data
+import org.hariswei.cmpshowcaseproject.util.UiState
 
 class HomeViewModel(
     private val moviesRepository: MoviesRepository
@@ -39,6 +37,10 @@ class HomeViewModel(
                                 model = it
                             )
                         } ?: listOf()
+
+                        result.data?.let {
+                            moviesRepository.insertMovies(it)
+                        }
 
                         _uiState.value = HomeScreenState(
                             isLoading = false,

@@ -1,4 +1,4 @@
-package util
+package org.hariswei.cmpshowcaseproject.util
 
 enum class NetworkError : Error {
     REQUEST_TIMEOUT,

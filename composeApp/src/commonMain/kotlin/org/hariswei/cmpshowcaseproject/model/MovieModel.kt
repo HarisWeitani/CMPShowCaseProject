@@ -1,7 +1,7 @@
-package domain.model
+package org.hariswei.cmpshowcaseproject.model
 
-import data.model.MovieEntity
-import data.model.MoviesResponse
+import org.hariswei.cmpshowcaseproject.data.model.MovieEntity
+import org.hariswei.cmpshowcaseproject.data.model.MoviesResponse
 import getPlatform
 
 data class MovieModel(
@@ -41,7 +41,7 @@ fun MoviesResponse.toDomain() : List<MovieModel> =
         )
     }
 
-fun List<MovieModel>.toEntity(): MovieEntity =
+fun MovieModel.toEntity(): MovieEntity =
     MovieEntity(
         movieId = id,
         adult = adult,

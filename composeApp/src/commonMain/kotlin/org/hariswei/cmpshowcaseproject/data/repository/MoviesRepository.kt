@@ -1,18 +1,17 @@
-package data.repository
+package org.hariswei.cmpshowcaseproject.data.repository
 
-import data.database.MovieDao
-import data.network.ApiService
-import domain.model.MovieModel
-import domain.model.toDomain
-import domain.model.toEntity
+import database.MovieDatabase
+import org.hariswei.cmpshowcaseproject.data.network.ApiService
+import org.hariswei.cmpshowcaseproject.model.MovieModel
+import org.hariswei.cmpshowcaseproject.model.toDomain
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import util.UiState
-import util.onError
-import util.onSuccess
+import org.hariswei.cmpshowcaseproject.util.UiState
+import org.hariswei.cmpshowcaseproject.util.onError
+import org.hariswei.cmpshowcaseproject.util.onSuccess
 
 interface MoviesRepository {
     suspend fun getMovies() : Flow<UiState<List<MovieModel>>>
@@ -21,7 +20,7 @@ interface MoviesRepository {
 
 class MoviesRepositoryImpl(
     private val moviesClient: ApiService,
-    private val movieDb: MovieDao
+    private val movieDb: MovieDatabase
 ): MoviesRepository {
     override suspend fun getMovies(): Flow<UiState<List<MovieModel>>> {
         return flow {
@@ -37,10 +36,8 @@ class MoviesRepositoryImpl(
     }
 
     override suspend fun insertMovies(dataList: List<MovieModel>) {
-        dataList.forEach { data ->
-            movieDb.insertMovies(
-                data.toEntity()
-            )
-        }
+//        dataList.forEach { org.hariswei.cmpshowcaseproject.data ->
+//            movieDb.movieDao().insertMovies(org.hariswei.cmpshowcaseproject.data.toEntity())
+//        }
     }
 }

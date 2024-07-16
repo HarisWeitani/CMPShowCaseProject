@@ -1,4 +1,4 @@
-package data.network
+package org.hariswei.cmpshowcaseproject.data.network
 
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -7,10 +7,10 @@ import io.ktor.client.request.bearerAuth
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import io.ktor.http.ContentType
-import data.model.MoviesResponse
+import org.hariswei.cmpshowcaseproject.data.model.MoviesResponse
 import getPlatform
-import util.NetworkError
-import util.Result
+import org.hariswei.cmpshowcaseproject.util.NetworkError
+import org.hariswei.cmpshowcaseproject.util.Result
 
 class ApiService (
     private val httpClient: HttpClient

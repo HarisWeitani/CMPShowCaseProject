@@ -1,6 +1,5 @@
-package ui.home
+package org.hariswei.cmpshowcaseproject.ui.home
 
-import DetailScreenRoute
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -29,11 +28,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil3.compose.AsyncImage
-import domain.model.MovieModel
+import org.hariswei.cmpshowcaseproject.model.MovieModel
 import kotlinx.coroutines.delay
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.annotation.KoinExperimentalAPI
-import ui.detail.DetailScreen
 
 data class HomeScreenState(
     val isLoading: Boolean = false,

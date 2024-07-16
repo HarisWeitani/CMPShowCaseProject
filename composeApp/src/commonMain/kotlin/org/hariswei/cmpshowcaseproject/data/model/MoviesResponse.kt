@@ -1,4 +1,4 @@
-package data.model
+package org.hariswei.cmpshowcaseproject.data.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

@@ -1,6 +1,7 @@
 package org.hariswei.cmpshowcaseproject
 
 import App
+import TestApp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -10,17 +11,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.compose.rememberNavController
-import ui.home.HomeScreen
-import ui.home.HomeScreenState
-import ui.home.NewsItem
+import org.hariswei.cmpshowcaseproject.database.getMovieDatabase
+import org.hariswei.cmpshowcaseproject.ui.home.HomeScreen
+import org.hariswei.cmpshowcaseproject.ui.home.HomeScreenState
+import org.hariswei.cmpshowcaseproject.ui.home.NewsItem
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val dao = getMovieDatabase(applicationContext).movieDao()
         setContent {
-            App()
+//            App()
+            TestApp(movieDao = dao)
         }
     }
 }

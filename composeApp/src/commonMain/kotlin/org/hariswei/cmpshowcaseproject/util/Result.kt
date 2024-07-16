@@ -1,10 +1,10 @@
-package util
+package org.hariswei.cmpshowcaseproject.util
 
 interface Error
 
 sealed class Result<out D, out E: Error> {
     data class Success<out D>(val data: D): Result<D, Nothing>()
-    data class Error<out E: util.Error>(val error: E): Result<Nothing, E>()
+    data class Error<out E: org.hariswei.cmpshowcaseproject.util.Error>(val error: E): Result<Nothing, E>()
 }
 
 inline fun <T, E: Error> Result<T, E>.onSuccess(action: (T) -> Unit): Result<T, E> {

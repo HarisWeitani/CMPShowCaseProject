@@ -1,8 +1,9 @@
-package database
+package org.hariswei.cmpshowcaseproject.database
 
 import androidx.room.Room
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
-import data.database.MovieDatabase
+import database.MovieDatabase
+import database.instantiateImpl
 import platform.Foundation.NSHomeDirectory
 
 fun getMovieDatabase(): MovieDatabase {
@@ -10,8 +11,7 @@ fun getMovieDatabase(): MovieDatabase {
     return Room.databaseBuilder<MovieDatabase>(
         name = dbFile,
         factory = { MovieDatabase::class.instantiateImpl() }
-    )
-        .setDriver(BundledSQLiteDriver())
+    ).setDriver(BundledSQLiteDriver())
+        .fallbackToDestructiveMigration(true)
         .build()
-
 }

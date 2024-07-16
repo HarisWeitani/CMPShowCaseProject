@@ -1,8 +1,10 @@
 package ui.home
 
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.util.fastRoundToInt
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import data.database.PersonEntity
 import kotlinx.coroutines.launch
 import data.repository.MoviesRepository
 import domain.model.MovieModel
@@ -48,6 +50,13 @@ class HomeViewModel(
                     }
                 }
             }
+        }
+    }
+
+    fun testDb() {
+        viewModelScope.launch{
+            moviesRepository.upsertPeople(PersonEntity(name = "Ajib"))
+            moviesRepository.getPeople()
         }
     }
 

@@ -9,11 +9,12 @@ import data.repository.MoviesRepository
 import data.repository.MoviesRepositoryImpl
 import org.koin.compose.viewmodel.dsl.viewModelOf
 import org.koin.core.context.startKoin
+import org.koin.core.module.Module
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
 import ui.home.HomeViewModel
 
-val clientModule = module {
+val networkModule = module {
     single {
         HttpClient {
             install(ContentNegotiation) {
@@ -21,25 +22,24 @@ val clientModule = module {
             }
         }
     }
-}
-
-val apiServiceModule = module {
     single { ApiService(get()) }
 }
 
 val repositoryModule = module {
-    single<MoviesRepository> { MoviesRepositoryImpl(get()) }
+    single<MoviesRepository> { MoviesRepositoryImpl(get(), get()) }
 }
+
+expect val databaseModule : Module
 
 val viewModelModule = module {
     viewModelOf(::HomeViewModel)
 }
 
-fun appModule() = listOf(viewModelModule, repositoryModule, clientModule, apiServiceModule)
+fun appModule() = listOf(viewModelModule, repositoryModule, networkModule)
 
 fun initKoin(appDeclaration: KoinAppDeclaration = {}) {
     startKoin {
         appDeclaration()
-        modules(viewModelModule, repositoryModule, clientModule, apiServiceModule)
+        modules(viewModelModule, repositoryModule, networkModule, databaseModule)
     }
 }

@@ -25,26 +25,8 @@ import ui.detail.DetailScreen
 import ui.home.HomeRoute
 
 @Composable
-fun App(peopleDao: PeopleDao) {
+fun App() {
     val navController = rememberNavController()
-
-    val people by peopleDao.getAllPeople().collectAsState(emptyList())
-
-    LaunchedEffect(true) {
-        val peopleList = listOf(
-            PersonEntity(name = "John"),
-            PersonEntity(name = "Alice"),
-            PersonEntity(name = "Philipp"),
-        )
-        peopleList.forEach {
-            peopleDao.upsert(it)
-        }
-    }
-
-    people.forEach {
-        println(it.name)
-    }
-
     MaterialTheme {
         Scaffold(
             modifier = Modifier.fillMaxSize(),

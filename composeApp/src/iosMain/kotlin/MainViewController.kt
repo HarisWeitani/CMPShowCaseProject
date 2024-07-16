@@ -9,8 +9,5 @@ fun MainViewController() =
             initKoin()
         }
     ){
-        val dao = remember {
-            getPeopleDatabase().peopleDao()
-        }
-        App(dao)
+        App()
     }

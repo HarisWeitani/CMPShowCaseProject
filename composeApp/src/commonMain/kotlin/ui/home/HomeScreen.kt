@@ -59,6 +59,7 @@ fun HomeRoute(
 
     LaunchedEffect(Unit) {
         viewModel.getMovies()
+        viewModel.testDb()
     }
 
     HomeScreen(

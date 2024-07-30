@@ -20,3 +20,5 @@ data class MovieEntity(
     val voteAverage: Double,
     val voteCount: Int,
 )
+
+

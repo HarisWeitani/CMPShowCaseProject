@@ -7,6 +7,8 @@ import kotlinx.serialization.json.Json
 import org.hariswei.cmpshowcaseproject.data.network.ApiService
 import org.hariswei.cmpshowcaseproject.data.repository.MoviesRepository
 import org.hariswei.cmpshowcaseproject.data.repository.MoviesRepositoryImpl
+import org.hariswei.cmpshowcaseproject.domain.usecase.MoviesUseCase
+import org.hariswei.cmpshowcaseproject.domain.usecase.MoviesUseCaseImpl
 import org.koin.compose.viewmodel.dsl.viewModelOf
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
@@ -29,6 +31,10 @@ val repositoryModule = module {
     single<MoviesRepository> { MoviesRepositoryImpl(get(), get()) }
 }
 
+val useCaseModule = module {
+    single<MoviesUseCase> { MoviesUseCaseImpl(get()) }
+}
+
 expect val databaseModule : Module
 
 val viewModelModule = module {
@@ -38,6 +44,6 @@ val viewModelModule = module {
 fun initKoin(appDeclaration: KoinAppDeclaration = {}) {
     startKoin {
         appDeclaration()
-        modules(viewModelModule, repositoryModule, networkModule, databaseModule)
+        modules(viewModelModule, repositoryModule, networkModule, databaseModule, useCaseModule)
     }
 }

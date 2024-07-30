@@ -11,7 +11,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.hariswei.cmpshowcaseproject.ui.home.HomeScreen
 import org.hariswei.cmpshowcaseproject.ui.home.HomeScreenState
-import org.hariswei.cmpshowcaseproject.ui.home.NewsItem
+import org.hariswei.cmpshowcaseproject.ui.home.item.NewsItem
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

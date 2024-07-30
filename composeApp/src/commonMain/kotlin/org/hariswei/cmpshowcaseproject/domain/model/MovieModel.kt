@@ -1,6 +1,5 @@
 package org.hariswei.cmpshowcaseproject.domain.model
 
-import org.hariswei.cmpshowcaseproject.data.model.MovieEntity
 import org.hariswei.cmpshowcaseproject.data.model.MoviesResponse
 import org.hariswei.cmpshowcaseproject.getPlatform
 
@@ -21,7 +20,7 @@ data class MovieModel(
     val voteCount: Int
 )
 
-fun MoviesResponse.toDomain() : List<MovieModel> =
+fun MoviesResponse.toModel() : List<MovieModel> =
     results.map { data ->
         MovieModel(
             adult = data.adult,
@@ -40,20 +39,3 @@ fun MoviesResponse.toDomain() : List<MovieModel> =
             voteCount = data.voteCount,
         )
     }
-
-//fun List<MovieModel>.toEntity(): MovieEntity =
-//    MovieEntity(
-//        movieId = id,
-//        adult = adult,
-//        backdropPath = backdropPath,
-//        originalLanguage = originalLanguage,
-//        originalTitle = originalTitle,
-//        overview = overview,
-//        popularity = popularity,
-//        posterPath = posterPath,
-//        releaseDate = releaseDate,
-//        title = title,
-//        video = video,
-//        voteAverage = voteAverage,
-//        voteCount = voteCount,
-//    )

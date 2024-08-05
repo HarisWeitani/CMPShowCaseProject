@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import org.hariswei.cmpshowcaseproject.ui.app.App
 import org.hariswei.cmpshowcaseproject.ui.home.HomeScreen
 import org.hariswei.cmpshowcaseproject.ui.home.HomeScreenState
 import org.hariswei.cmpshowcaseproject.ui.home.item.NewsItem

@@ -4,6 +4,7 @@ import io.ktor.client.HttpClient
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
+import org.hariswei.cmpshowcaseproject.ui.app.AppbarViewModel
 import org.hariswei.cmpshowcaseproject.data.network.ApiService
 import org.hariswei.cmpshowcaseproject.data.repository.MoviesRepository
 import org.hariswei.cmpshowcaseproject.data.repository.MoviesRepositoryImpl
@@ -39,6 +40,7 @@ expect val databaseModule : Module
 
 val viewModelModule = module {
     viewModelOf(::HomeViewModel)
+    viewModelOf(::AppbarViewModel)
 }
 
 fun initKoin(appDeclaration: KoinAppDeclaration = {}) {

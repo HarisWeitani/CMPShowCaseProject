@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 interface MovieDao {
 
     @Query("SELECT * FROM MovieEntity")
-    fun getMovies(): List<MovieEntity>
+    suspend fun getMovies(): List<MovieEntity>
 
     @Upsert
     suspend fun upsertMovies(data: List<MovieEntity>)

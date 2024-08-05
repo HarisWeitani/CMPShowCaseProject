@@ -21,4 +21,21 @@ data class MovieEntity(
     val voteCount: Int,
 )
 
-
+fun MoviesResponse.toEntity() : List<MovieEntity> =
+    results.map { data ->
+        MovieEntity(
+            movieId = data.id,
+            adult = data.adult,
+            backdropPath = data.backdropPath,
+            originalLanguage = data.originalLanguage,
+            originalTitle = data.originalTitle,
+            overview = data.overview,
+            popularity = data.popularity,
+            posterPath = data.posterPath,
+            releaseDate = data.releaseDate,
+            title = data.title,
+            video = data.video,
+            voteAverage = data.voteAverage,
+            voteCount = data.voteCount
+        )
+    }

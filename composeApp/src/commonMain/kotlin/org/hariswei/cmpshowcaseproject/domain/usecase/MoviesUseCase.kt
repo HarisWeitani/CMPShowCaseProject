@@ -5,6 +5,7 @@ import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import org.hariswei.cmpshowcaseproject.data.model.toEntity
 import org.hariswei.cmpshowcaseproject.data.repository.MoviesRepository
 import org.hariswei.cmpshowcaseproject.domain.model.MovieModel
 import org.hariswei.cmpshowcaseproject.domain.model.toModel
@@ -26,6 +27,7 @@ class MoviesUseCaseImpl(
             val data = moviesRepository.getMovies()
             data.onSuccess { result ->
                 val mapData = result.toModel()
+                moviesRepository.upsertMovies(result.toEntity())
                 emit(UiState.Success(mapData))
             }.onError { error ->
                 emit(UiState.Error(emptyList<MovieModel>(), error.name))
